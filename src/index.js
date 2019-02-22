@@ -3,13 +3,28 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.internalState = false;
+  }
+
+  toggleMenu = () => {
+    this.internalState = !this.internalState;
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Toggle State</h1>
+        <input type="button" onClick={this.toggleMenu} value="Toggle" />
+        <div style={{ paddingTop: "25px" }}>
+          {" "}
+          internalState {this.internalState.toString()}{" "}
+        </div>
+      </div>
+    );
+  }
 }
 
 const rootElement = document.getElementById("root");
