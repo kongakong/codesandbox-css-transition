@@ -39,6 +39,7 @@ decorate(Main, {
 
 function App() {
   return <Main />;
+
 }
 
 const rootElement = document.getElementById("root");
