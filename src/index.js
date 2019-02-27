@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import mobx, { observable, action, decorate } from "mobx";
-import mobxReact from "mobx-react";
+import { observer } from "mobx-react";
 
 import "./styles.css";
 
-const Main = mobxReact.observer(
+const Main = observer(
   class Main extends React.Component {
     // @observable internalState = false;
     constructor(props) {
