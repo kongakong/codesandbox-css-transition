@@ -1,30 +1,45 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import mobx, { observable, action, decorate } from "mobx";
+import mobxReact from "mobx-react";
 
 import "./styles.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.internalState = false;
-  }
+const Main = mobxReact.observer(
+  class Main extends React.Component {
+    // @observable internalState = false;
+    constructor(props) {
+      super(props);
+      this.internalState = false;
+    }
 
-  toggleMenu = () => {
-    this.internalState = !this.internalState;
-  };
+    toggleMenu = () => {
+      console.log("Toggle button");
+      this.internalState = !this.internalState;
+    };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Toggle State</h1>
-        <input type="button" onClick={this.toggleMenu} value="Toggle" />
-        <div style={{ paddingTop: "25px" }}>
-          {" "}
-          internalState {this.internalState.toString()}{" "}
+    render() {
+      return (
+        <div className="App">
+          <h1>Toggle State</h1>
+          <input type="button" onClick={this.toggleMenu} value="Toggle" />
+          <div style={{ paddingTop: "25px" }}>
+            internalState {this.internalState.toString()}{" "}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
+);
+
+decorate(Main, {
+  internalState: observable,
+  toggleMenu: action
+});
+
+function App() {
+  return <Main />;
+
 }
 
 const rootElement = document.getElementById("root");
